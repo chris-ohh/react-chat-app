@@ -1,6 +1,6 @@
-const http from 'http';
-const cors from 'cors';
-const io from 'socket.io';
+const http = require('http');
+const cors = require('cors');
+const io = require('socket.io');
 
 const express = require('express');
 
@@ -13,11 +13,15 @@ const socketIo = io(server);
 // Allows CORS
 app.use(cors());
 
+app.get('/', (req, res) => {
+  res.send({ express: 'Hello From Express' });
+});
+
 app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+server.listen(port, () => console.log(`Listening on port ${port}`));
 
 socketIo.on('connection', socket => {
   const username = socket.handshake.query.username;
