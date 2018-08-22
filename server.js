@@ -1,6 +1,7 @@
 const http = require('http');
 const cors = require('cors');
 const io = require('socket.io');
+const path = require('path');
 
 const express = require('express');
 
@@ -10,11 +11,17 @@ const port = process.env.PORT || 5000;
 const server = http.createServer(app);
 const socketIo = io(server);
 
+const buildPath = path.join(__dirname, '/build');
+
 // Allows CORS
 app.use(cors());
 
+app.use(express.static(path.join(__dirname, '/public')));
+
+app.use(express.static(buildPath));
+
 app.get('/', (req, res) => {
-  res.send({ express: 'Hello From Express' });
+  res.render(__dirname + '/client/public/index');
 });
 
 app.get('/api/hello', (req, res) => {
