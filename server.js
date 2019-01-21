@@ -4,6 +4,7 @@ const io = require('socket.io');
 const path = require('path');
 
 const express = require('express');
+const dotenv = require('dotenv').config;
 
 const app = express();
 const port = process.env.PORT || 5000;

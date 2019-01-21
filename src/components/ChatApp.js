@@ -14,7 +14,7 @@ class ChatApp extends React.Component {
     this.sendHandler = this.sendHandler.bind(this);
 
     // Connect to the server
-    this.socket = io('https://react-chat-app-simple.herokuapp.com', { query: `username=${props.username}` }).connect();
+    this.socket = io(process.env.PUBLIC_URL, { query: `username=${props.username}` }).connect();
 
     // Listen for messages from the server
     this.socket.on('server:message', message => {
