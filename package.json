@@ -2,11 +2,13 @@
   "name": "example-create-react-app-express",
   "version": "1.0.0",
   "scripts": {
+    "start": "node server.js",
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "webpack": "webpack",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "cors": "^2.8.1",
